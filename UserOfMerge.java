@@ -26,7 +26,23 @@ public class UserOfMerge {
             ));
 
         oneTest( "card decks"
-               , cards, 2, 6, 14 );
+               , cards, 2, 6, 12 );
+
+	ArrayList<String> list = new ArrayList<String>();
+	list.add("2");
+	list.add("4");
+	list.add("3");
+	list.add("1");
+	list.add("0");
+	list.add("6");
+	list.add("5");
+	list.add("3");
+	 
+	Merger merger = new Merger(list);
+	System.out.println(merger);
+	merger.subSortThenMerge_Sorter();
+	System.out.println(merger);
+	    
     }
 
     

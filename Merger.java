@@ -33,15 +33,23 @@ public class Merger {
 	int iterateSecondList = start1;
 	ArrayList<String> newList = new ArrayList<String>();
 	while(newList.size() < nItems - start0) {
-	    if ((usersData.get(start0).compareTo(usersData.get(start1))) > 0) {
-		newList.add(usersData.get(start1));
-		start1++;
-		System.out.println(newList);
+	    if (iterateFirstList == start1){
+		newList.add(usersData.get(iterateSecondList));
+		iterateSecondList++;
+	    }
+	    else if (iterateSecondList == nItems) {
+		newList.add(usersData.get(iterateFirstList));
+		iterateFirstList++;
+	    }
+	    else if ((usersData.get(iterateFirstList).compareTo(usersData.get(iterateSecondList))) > 0) {
+		newList.add(usersData.get(iterateSecondList));
+		iterateSecondList++;
+		//System.out.println(newList);
 	    }
 	    else {
-		newList.add(usersData.get(start0));
-		start0++;
-		System.out.println(newList);
+		newList.add(usersData.get(iterateFirstList));
+		iterateFirstList++;
+		//System.out.println(newList);
 	    }
 	}
 	
@@ -52,6 +60,26 @@ public class Merger {
 	
 	
     }
+
+    public void subSortThenMerge_Sorter(int start, int end) {
+	if (end - start > 1) { //Boolean statement that determines wheter to use recursive case or base case
+	    // The base case, although not explicitly written, is to do nothing (trivial)
+	    
+	    int mid = (start + end)/2;
+	    subSortThenMerge_Sorter(start, mid); //recursive abstraction
+	    subSortThenMerge_Sorter(mid,end); //recursive absstraction
+	    // There is no leftover, but there are two recursive abstractions
+	    merge(start, mid, end); //combiner
+	    
+	}
+
+	else {}
+    }
+
+    public void subSortThenMerge_Sorter() {
+	subSortThenMerge_Sorter(0,usersData.size());
+    }
+    
 
 
     /**
